@@ -1,0 +1,96 @@
+/*Reset*/
+* {
+	margin: 0;
+	padding: 0;
+	font-family: verdana, sans-serif;
+}
+
+#wrapper {
+	width: 970px;
+	margin: 0 auto;
+}
+
+/*Header*/
+#header {
+	height: 55px;
+	border-bottom: 2px solid #000000;  /*Black*/
+	padding: 5px;
+}
+
+#header h4, #header p, #header button {
+	display: inline-block;
+	position: relative;
+	vertical-align: center;
+}
+
+#header p {
+	left: 580px;
+}
+
+#header button {
+	left: 600px;
+	top: -5px;
+	background: #B06000;
+	color: #FFFFFF;  
+}
+
+/*Main content*/
+#body_wrap {
+	padding: 25px;
+}
+
+#body_wrap input {
+
+}
+
+#post_msg .btn {
+	background: #0000B0;  /*Blue*/
+	color: #FFFFFF;  /*White*/
+	position: relative;
+	left: 90%;
+}
+
+.msg_body {
+	margin-left: 20px;
+}
+
+.comment {
+	margin-left: 30px;
+}
+
+.comment .btn {
+	background: #008000;  /*Green*/
+	color: #FFFFFF;
+	position: relative;
+	left: 85%;
+}
+
+.msg_header {
+	font-weight: bold;
+}
+
+/*Login page and index for non-members*/
+#centerbox {
+	width: 500px;
+	margin: 20px auto;
+	padding: 20px;
+}
+
+#centerbox div {
+	width: 450px;
+	border: 1px solid #000000;
+	padding: 20px;
+}
+
+.btn {
+	margin: 10px 0px;
+}
+
+#alert {
+	color: #800000;  /*Red*/
+}
+
+td {
+	/*height: 30px;*/
+	border-right: 5px solid #FFFFFF;
+}

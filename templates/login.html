@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Wall: Sign Up and Login</title>
+	<meta name="description" content="Proof of concept for login and registration">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='wall.css')}}">
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id="centerbox">
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+					<p class="alert">{{message|safe}}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		<div id="/signup">
+			<h4>Sign up to take advantage of our site!</h4>
+			<form action="/new" method="post">
+				<table>
+					<thead></thead>
+					<tbody>
+						<tr>
+							<td><label for="first_name">First Name:</label></td>
+							<td><input type="text" name="first_name"></td>
+						</tr>
+						<tr>
+							<td><label for="last_name">Last Name:</label></td>
+							<td><input type="text" name="last_name"></td>
+						</tr>
+						<tr>
+							<td><label for="email">Email:</label></td>
+							<td><input type="text" name="email"></td>
+						</tr>
+						<tr>
+							<td><label for="pw1">Password:</label></td>
+							<td><input type="password" name="pw1"></td>
+						</tr>
+						<tr>
+							<td><label for="pw2">Confirm Password:</label></td>
+							<td><input type="password" name="pw2"></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="submit" class="btn" name="New Member">
+			</form>
+		</div>  <!-- #signup -->
+		<div id="/login">
+			<h4>Already a member? Login!</h4>
+			<form action="/member" method="post">
+				<table>
+					<thead></thead>
+					<tbody>
+						<tr>
+							<td><label for="email">Email:</label></td>
+							<td><input type="text" name="email"></td>
+						</tr>
+						<tr>
+							<td><label for="password">Password:</label></td>
+							<td><input type="password" name="password"></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="submit" class="btn" name="Login">
+			</form>
+		</div>  <!-- #login -->
+	</div>  <!-- #mainbox -->
+</body>

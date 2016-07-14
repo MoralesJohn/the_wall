@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Wall</title>
+	<meta name="description" content="Proof of concept for message and comments page, including secure logins.">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='wall.css')}}">
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<h4>CodingDojo Wall</h4>
+			<p>Welcome {{ name }}!</p>
+			{% if not session["id"] %}
+				<a href="/login"><button class="btn">Login</button></a>
+			{% else %}
+				<a href="/logout"><button class="btn">Logout</button></a>
+			{% endif %}
+		</div>  <!-- #header -->
+		{% if "id" not in session %}  <!-- Member vs Non-Member -->
+			<div id="centerbox">
+				<h4>Not seeing anything?</h4>
+				<p>Not much to see if you aren't a member. Sign up or log in.</p>
+				<a href="/login"><button class="btn">Login</button></a>
+			</div>  <!-- #centerbox -->
+		{% else %}  <!-- Member vs Non-Member -->
+			<div id="body_wrap">
+			<div id="post_msg">
+				<h4>Post a message</h4>
+				<form action="/message" method="post">
+					<textarea cols="110" rows="4" name="msg_text" id="msg_box"></textarea>
+					<input type="submit" value="Post" class="btn">
+				</form>
+			</div>  <!-- #post_msg -->
+			<div id="msg_display">
+				{% for msg in msg_data %}
+					<hr>
+					<p class="msg_header">
+						{{ msg["first_name"] }} {{ msg["last_name"] }} - {{ msg["created_at"].strftime("%B %d %Y") }}
+					</p>
+					<p class="msg_body">
+						{{ msg["message"] }}
+					</p>
+					<div class="comment">
+						{% for cmnt in cmnt_data %}
+							{% if cmnt["message_id"] == msg["id"] %}
+								<p class="msg_header">
+									{{ cmnt["first_name"] }} {{ cmnt["last_name"] }} - {{ cmnt["created_at"].strftime("%B %d %Y") }}
+								</p>
+								<p class="cmnt_body">
+									{{ cmnt["comment"] }}
+								</p>
+							{% endif %}
+						{% endfor %}
+						<form action="/comment", method="post">
+							<input type="hidden" name="msg_id" value={{msg['id']}} >
+							<textarea cols="106" rows="4" name="cmnt_text" id="cmnt_box"></textarea>
+							<input type="submit" value="Comment" class="btn">
+						</form>
+					</div>  <!-- .comment -->
+				{% endfor %}
+			</div>  <!-- #msg_display -->
+			</div>  <!-- #body_wrap -->
+		{% endif %}  <!-- Member vs Non-Member -->
+	</div>  <!-- #wrapper -->
+</body>
